@@ -223,7 +223,7 @@ class Aplication(Funcs, Relatorios):
         self.lb_nome.place(relx=0.05, rely=0.33)
 
         self.nome_entry = Entry(self.aba_1)
-        self.nome_entry.place(relx=0.05, rely=0.45, relwidth=0.85)
+        self.nome_entry.place(relx=0.05, rely=0.45, relwidth=0.75)
 
         ### Criação da label e entrada do telefone
         self.lb_telefone = Label(self.aba_1, text="Telefone",bg='#040c13', fg='#1ca2d8')
@@ -238,6 +238,13 @@ class Aplication(Funcs, Relatorios):
 
         self.cidade_entry = Entry(self.aba_1)
         self.cidade_entry.place(relx=0.5, rely=0.75, relwidth=0.4)
+
+        ### drop down button
+        self.Tipvar = StringVar()
+        self.TipV = ('M', 'F', 'Outro')
+        self.Tipvar.set('M')
+        self.popupMenu = OptionMenu(self.aba_2, self.Tipvar, *self.TipV)
+        self.popupMenu.place(relx=0.89, rely=0.45, relheight=0.10, relwidth=0.10)
     def lista_frame_2(self):
         ###criando a listagem dos objetos
         self.listaCli = ttk.Treeview(self.frame_2, height=3, columns=('col1, col2, col3, col4'))
