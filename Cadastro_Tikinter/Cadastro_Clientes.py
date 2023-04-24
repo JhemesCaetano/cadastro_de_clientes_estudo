@@ -115,11 +115,19 @@ class Funcs():
         self.conecta_bd()
         self.listaCli.delete(*self.listaCli.get_children())
         self.nome_entry.insert(END, '%')
+        self.codigo_entry.insert(END, '%')
         nome = self.nome_entry.get()
+        codigo = self.codigo_entry.get()
+
         self.cursor.execute(""" SELECT cod, nome_clientes, telefone,
         cidade FROM clientes WHERE nome_clientes LIKE '%s' ORDER BY 
         nome_clientes ASC
         """ % nome)
+
+        self.cursor.execute(""" SELECT cod, nome_clientes, telefone,
+                cidade FROM clientes WHERE cod LIKE '%s'
+                """ % codigo)
+
         busca_nomeCli = self.cursor.fetchall()
         for i in busca_nomeCli:
             self.listaCli.insert("", END, values=i)
@@ -179,8 +187,8 @@ class Aplication(Funcs, Relatorios):
                                 activeforeground='white')
         self.bt_buscar.place(relx=0.31, rely=0.10, relwidth=0.1, relheight=0.15)
 
-            ## Criando balâo de texto
-        text_balao_buscar = 'Digite no campo "Nome" o nome do cliente que deseja buscar'
+        ## Criando balâo de texto
+        text_balao_buscar = 'Digite no respectivo campo o "nome" ou o "codigo" do cliente'
         self.balao_buscar = tix.Balloon(self.aba_1)
         self.balao_buscar.bind_widget(self.bt_buscar, balloonmsg = text_balao_buscar)
 
