@@ -153,69 +153,82 @@ class Aplication(Funcs, Relatorios):
                              highlightthickness=4,)
         self.frame_2.place(relx=0.02, rely=0.5, relheight=0.46, relwidth=0.960)
     def widgets_frame_1(self):
+        self.abas = ttk.Notebook(self.frame_1)
+        self.aba_1 = Frame(self.abas)
+        self.aba_2  = Frame(self.abas)
+
+        self.aba_1.configure(background= "#040c13")
+        self.aba_2.configure(background='#040c13')
+
+        self.abas.add(self.aba_1, text='Clientes')
+        self.abas.add(self.aba_2, text='Produtos')
+
+        self.abas.place(relx=0, rely=0, relwidth=0.9999, relheight=0.9999)
+
+
         ### Criação do botão 'limpar'
-        self.bt_limpar = Button(self.frame_1, text="Limpar", bd=3, bg='#103141', fg='white',
+        self.bt_limpar = Button(self.aba_1, text="Limpar", bd=3, bg='#103141', fg='white',
                                 command=self.limpa_tela, activebackground='#103058',
                                 activeforeground='white'
                                 )
         self.bt_limpar.place(relx=0.2, rely=0.10, relwidth=0.1, relheight=0.15)
 
         ### Criação do botão 'buscar'
-        self.bt_buscar = Button(self.frame_1, text="Buscar", bd=3, bg='#103141', fg='white',
+        self.bt_buscar = Button(self.aba_1, text="Buscar", bd=3, bg='#103141', fg='white',
                                 command=self.busca_cliente, activebackground='#103058',
                                 activeforeground='white')
         self.bt_buscar.place(relx=0.31, rely=0.10, relwidth=0.1, relheight=0.15)
 
             ## Criando balâo de texto
         text_balao_buscar = 'Digite no campo "Nome" o nome do cliente que deseja buscar'
-        self.balao_buscar = tix.Balloon(self.frame_1)
+        self.balao_buscar = tix.Balloon(self.aba_1)
         self.balao_buscar.bind_widget(self.bt_buscar, balloonmsg = text_balao_buscar)
 
 
         ### Criação do botão 'cadastrar'
-        self.bt_cadastar = Button(self.frame_1, text="Cadastrar", bd=3, bg='#103141', fg='white',
+        self.bt_cadastar = Button(self.aba_1, text="Cadastrar", bd=3, bg='#103141', fg='white',
                                 command=self.add_cliente, activebackground='#103058',
                                 activeforeground='white')
         self.bt_cadastar.place(relx=0.6, rely=0.10, relwidth=0.1, relheight=0.15)
 
         ### Criação do botão 'Alterar'
-        self.bt_alterar = Button(self.frame_1, text="Alterar", bd=3, bg='#103141', fg='white',
+        self.bt_alterar = Button(self.aba_1, text="Alterar", bd=3, bg='#103141', fg='white',
                                  command=self.altera_cliente, activebackground='#103058',
                                  activeforeground='white')
         self.bt_alterar.place(relx=0.71, rely=0.10, relwidth=0.1, relheight=0.15)
 
         ### Criação do botão 'Apagar'
-        self.bt_apagar = Button(self.frame_1, text="Apagar", bd=3, bg='#103141', fg='white',
+        self.bt_apagar = Button(self.aba_1, text="Apagar", bd=3, bg='#103141', fg='white',
                                 command=self.deleta_cliente, activebackground='#103058',
                                 activeforeground='white')
         self.bt_apagar.place(relx=0.82, rely=0.10, relwidth=0.1, relheight=0.15)
 
         ### Criação da label e entrada do codigo
-        self.lb_codigo = Label(self.frame_1, text='Código',bg='#040c13', fg='#1ca2d8')
+        self.lb_codigo = Label(self.aba_1, text='Código',bg='#040c13', fg='#1ca2d8')
         self.lb_codigo.place(relx= 0.05, rely=0.033)
 
-        self.codigo_entry = Entry(self.frame_1)
+        self.codigo_entry = Entry(self.aba_1)
         self.codigo_entry.place(relx=0.05, rely=0.15, relwidth=0.08)
 
         ### Criação da label e entrada da nome
-        self.lb_nome = Label(self.frame_1, text="Nome", bg='#040c13', fg='#1ca2d8')
+        self.lb_nome = Label(self.aba_1, text="Nome", bg='#040c13', fg='#1ca2d8')
         self.lb_nome.place(relx=0.05, rely=0.33)
 
-        self.nome_entry = Entry(self.frame_1)
+        self.nome_entry = Entry(self.aba_1)
         self.nome_entry.place(relx=0.05, rely=0.45, relwidth=0.85)
 
         ### Criação da label e entrada do telefone
-        self.lb_telefone = Label(self.frame_1, text="Telefone",bg='#040c13', fg='#1ca2d8')
+        self.lb_telefone = Label(self.aba_1, text="Telefone",bg='#040c13', fg='#1ca2d8')
         self.lb_telefone.place(relx=0.05, rely=0.63)
 
-        self.telefone_entry = Entry(self.frame_1)
+        self.telefone_entry = Entry(self.aba_1)
         self.telefone_entry.place(relx=0.05, rely=0.75, relwidth=0.4)
 
         ### Criação da label e entrada da Cidade
-        self.lb_cidade = Label(self.frame_1, text="Cidade",bg='#040c13', fg='#1ca2d8')
+        self.lb_cidade = Label(self.aba_1, text="Cidade",bg='#040c13', fg='#1ca2d8')
         self.lb_cidade.place(relx=0.5, rely=0.63)
 
-        self.cidade_entry = Entry(self.frame_1)
+        self.cidade_entry = Entry(self.aba_1)
         self.cidade_entry.place(relx=0.5, rely=0.75, relwidth=0.4)
     def lista_frame_2(self):
         ###criando a listagem dos objetos
@@ -232,7 +245,7 @@ class Aplication(Funcs, Relatorios):
         self.listaCli.column('#3', width=150)
         self.listaCli.column('#4', width=150)
 
-        self.listaCli.place(relx=0.01, rely=0.01, relwidth=0.95, relheight=0.85)
+        self.listaCli.place(relx=0, rely=0, relwidth=0.999, relheight=0.999)
         ###criando o scrool da lista
         self.scroolLista = Scrollbar(self.frame_2, orient='vertical')
         self.listaCli.configure(yscrollcommand=self.frame_2,)
