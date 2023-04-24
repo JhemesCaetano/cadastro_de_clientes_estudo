@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import tix
 import sqlite3
 
 from reportlab.pdfgen import canvas
@@ -11,7 +12,7 @@ import webbrowser
 
 
 
-root = Tk()
+root = tix.Tk()
 
 class Relatorios():
     def print_clienntes(self):
@@ -164,6 +165,12 @@ class Aplication(Funcs, Relatorios):
                                 command=self.busca_cliente, activebackground='#103058',
                                 activeforeground='white')
         self.bt_buscar.place(relx=0.31, rely=0.10, relwidth=0.1, relheight=0.15)
+
+            ## Criando balâo de texto
+        text_balao_buscar = 'Digite no campo "Nome" o nome do cliente que deseja buscar'
+        self.balao_buscar = tix.Balloon(self.frame_1)
+        self.balao_buscar.bind_widget(self.bt_buscar, balloonmsg = text_balao_buscar)
+
 
         ### Criação do botão 'cadastrar'
         self.bt_cadastar = Button(self.frame_1, text="Cadastrar", bd=3, bg='#103141', fg='white',
